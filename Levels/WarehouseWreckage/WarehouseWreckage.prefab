@@ -25,7 +25,7 @@
                     "Entity_[1172344194419]",
                     "Entity_[961186649382]",
                     "Entity_[2156623053163]",
-                    "Instance_[9574887341221]/ContainerEntity"
+                    "Entity_[30220069098537]"
                 ]
             },
             "Component_[15230859088967841193]": {
@@ -952,6 +952,73 @@
                             4.403708457946777,
                             -0.8633885979652405,
                             0.0
+                        ]
+                    }
+                }
+            }
+        },
+        "Entity_[30220069098537]": {
+            "Id": "Entity_[30220069098537]",
+            "Name": "Camera",
+            "Components": {
+                "EditorCameraComponent": {
+                    "$type": "{CA11DA46-29FF-4083-B5F6-E02C3A8C3A3D} EditorCameraComponent",
+                    "Id": 453057524299480322
+                },
+                "EditorDisabledCompositionComponent": {
+                    "$type": "EditorDisabledCompositionComponent",
+                    "Id": 16785599289344661613
+                },
+                "EditorEntityIconComponent": {
+                    "$type": "EditorEntityIconComponent",
+                    "Id": 16054999133406758772
+                },
+                "EditorEntitySortComponent": {
+                    "$type": "EditorEntitySortComponent",
+                    "Id": 6459459552376371261
+                },
+                "EditorInspectorComponent": {
+                    "$type": "EditorInspectorComponent",
+                    "Id": 5053993906467444420
+                },
+                "EditorLockComponent": {
+                    "$type": "EditorLockComponent",
+                    "Id": 8081008115195481563
+                },
+                "EditorOnlyEntityComponent": {
+                    "$type": "EditorOnlyEntityComponent",
+                    "Id": 16640243678487322218
+                },
+                "EditorPendingCompositionComponent": {
+                    "$type": "EditorPendingCompositionComponent",
+                    "Id": 11995771335774792847
+                },
+                "EditorVisibilityComponent": {
+                    "$type": "EditorVisibilityComponent",
+                    "Id": 4798374358801298839
+                },
+                "FlyCameraInputComponent": {
+                    "$type": "GenericComponentWrapper",
+                    "Id": 9487665395701350562,
+                    "m_template": {
+                        "$type": "FlyCameraInputComponent",
+                        "Move Speed": 10.0
+                    }
+                },
+                "TransformComponent": {
+                    "$type": "{27F1E1A1-8D9D-4C3B-BD3A-AFB9762449C0} TransformComponent",
+                    "Id": 13428923979995622929,
+                    "Parent Entity": "Entity_[1146574390643]",
+                    "Transform Data": {
+                        "Translate": [
+                            0.0,
+                            -7.944887161254883,
+                            1.1089591979980469
+                        ],
+                        "Rotate": [
+                            0.0,
+                            0.0,
+                            -36.00059509277344
                         ]
                     }
                 }
@@ -2882,31 +2949,6 @@
                     "op": "replace",
                     "path": "/ContainerEntity/Components/TransformComponent/Transform Data/Translate/2",
                     "value": 1.0
-                }
-            ]
-        },
-        "Instance_[9574887341221]": {
-            "Source": "Prefabs/FirstPersonController.prefab",
-            "Patches": [
-                {
-                    "op": "replace",
-                    "path": "/ContainerEntity/Components/TransformComponent/Parent Entity",
-                    "value": "../Entity_[1146574390643]"
-                },
-                {
-                    "op": "replace",
-                    "path": "/ContainerEntity/Components/TransformComponent/Transform Data/Translate/0",
-                    "value": -1.5344932079315186
-                },
-                {
-                    "op": "replace",
-                    "path": "/ContainerEntity/Components/TransformComponent/Transform Data/Translate/1",
-                    "value": -8.161943435668945
-                },
-                {
-                    "op": "replace",
-                    "path": "/ContainerEntity/Components/TransformComponent/Transform Data/Rotate/2",
-                    "value": -33.5410041809082
                 }
             ]
         }

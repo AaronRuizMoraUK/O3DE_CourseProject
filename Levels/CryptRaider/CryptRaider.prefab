@@ -267,10 +267,10 @@
                         "Configuration": {
                             "ModelAsset": {
                                 "assetId": {
-                                    "guid": "{FD340C30-755C-5911-92A3-19A3F7A77931}",
-                                    "subId": 281415304
+                                    "guid": "{D1F7E758-F1C3-5C80-84A5-C975810EB25F}",
+                                    "subId": 279578499
                                 },
-                                "assetHint": "objects/shaderball/shaderball_default_1m.fbx.azmodel"
+                                "assetHint": "assets/shaderball.fbx.azmodel"
                             }
                         }
                     }
@@ -282,6 +282,44 @@
                 "Component_[9439770997198325425]": {
                     "$type": "EditorLockComponent",
                     "Id": 9439770997198325425
+                },
+                "EditorMeshColliderComponent": {
+                    "$type": "EditorMeshColliderComponent",
+                    "Id": 3497175963803054694,
+                    "ColliderConfiguration": {
+                        "MaterialSlots": {
+                            "Slots": [
+                                {
+                                    "Name": "shaderball_01"
+                                }
+                            ]
+                        }
+                    },
+                    "ShapeConfiguration": {
+                        "PhysicsAsset": {
+                            "Asset": {
+                                "assetId": {
+                                    "guid": "{D1F7E758-F1C3-5C80-84A5-C975810EB25F}",
+                                    "subId": 2057742194
+                                },
+                                "assetHint": "assets/shaderball.fbx.pxmesh"
+                            },
+                            "Configuration": {
+                                "PhysicsAsset": {
+                                    "assetId": {
+                                        "guid": "{D1F7E758-F1C3-5C80-84A5-C975810EB25F}",
+                                        "subId": 2057742194
+                                    },
+                                    "loadBehavior": "QueueLoad",
+                                    "assetHint": "assets/shaderball.fbx.pxmesh"
+                                }
+                            }
+                        }
+                    }
+                },
+                "EditorStaticRigidBodyComponent": {
+                    "$type": "EditorStaticRigidBodyComponent",
+                    "Id": 3342864766171942150
                 }
             }
         },
