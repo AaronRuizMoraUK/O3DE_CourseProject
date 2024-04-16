@@ -9,16 +9,6 @@ namespace CourseProject
 {
     AZ_COMPONENT_IMPL(CryptMoverComponent, "CryptMoverComponent", "{334E66FD-8765-4C4E-997B-41A534870B86}");
 
-    void CryptMoverComponent::Activate()
-    {
-        CryptMoverRequestBus::Handler::BusConnect(GetEntityId());
-    }
-
-    void CryptMoverComponent::Deactivate()
-    {
-        CryptMoverRequestBus::Handler::BusDisconnect(GetEntityId());
-    }
-
     void CryptMoverComponent::Reflect(AZ::ReflectContext* context)
     {
         if (auto serializeContext = azrtti_cast<AZ::SerializeContext*>(context))
@@ -61,5 +51,26 @@ namespace CourseProject
 
     void CryptMoverComponent::GetDependentServices([[maybe_unused]] AZ::ComponentDescriptor::DependencyArrayType& dependent)
     {
+    }
+
+    void CryptMoverComponent::Activate()
+    {
+        CryptMoverRequestBus::Handler::BusConnect(GetEntityId());
+        AZ::TickBus::Handler::BusConnect();
+    }
+
+    void CryptMoverComponent::Deactivate()
+    {
+        AZ::TickBus::Handler::BusDisconnect();
+        CryptMoverRequestBus::Handler::BusDisconnect(GetEntityId());
+    }
+
+    void CryptMoverComponent::OnTick([[maybe_unused]] float deltaTime, [[maybe_unused]] AZ::ScriptTimePoint time)
+    {
+    }
+
+    int CryptMoverComponent::GetTickOrder()
+    {
+        return AZ::TICK_GAME;
     }
 } // namespace CourseProject

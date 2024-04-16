@@ -9,16 +9,6 @@ namespace CourseProject
 {
     AZ_COMPONENT_IMPL(CryptTriggerComponent, "CryptTriggerComponent", "{E34200A8-C1CB-4F1F-8626-4E0938988748}");
 
-    void CryptTriggerComponent::Activate()
-    {
-        CryptTriggerRequestBus::Handler::BusConnect(GetEntityId());
-    }
-
-    void CryptTriggerComponent::Deactivate()
-    {
-        CryptTriggerRequestBus::Handler::BusDisconnect(GetEntityId());
-    }
-
     void CryptTriggerComponent::Reflect(AZ::ReflectContext* context)
     {
         if (auto serializeContext = azrtti_cast<AZ::SerializeContext*>(context))
@@ -61,5 +51,26 @@ namespace CourseProject
 
     void CryptTriggerComponent::GetDependentServices([[maybe_unused]] AZ::ComponentDescriptor::DependencyArrayType& dependent)
     {
+    }
+
+    void CryptTriggerComponent::Activate()
+    {
+        CryptTriggerRequestBus::Handler::BusConnect(GetEntityId());
+        AZ::TickBus::Handler::BusConnect();
+    }
+
+    void CryptTriggerComponent::Deactivate()
+    {
+        AZ::TickBus::Handler::BusDisconnect();
+        CryptTriggerRequestBus::Handler::BusDisconnect(GetEntityId());
+    }
+
+    void CryptTriggerComponent::OnTick([[maybe_unused]] float deltaTime, [[maybe_unused]] AZ::ScriptTimePoint time)
+    {
+    }
+
+    int CryptTriggerComponent::GetTickOrder()
+    {
+        return AZ::TICK_GAME;
     }
 } // namespace CourseProject

@@ -9,16 +9,6 @@ namespace CourseProject
 {
     AZ_COMPONENT_IMPL(CryptGrabberComponent, "CryptGrabberComponent", "{D1095E74-2696-4006-B721-8AC291044DED}");
 
-    void CryptGrabberComponent::Activate()
-    {
-        CryptGrabberRequestBus::Handler::BusConnect(GetEntityId());
-    }
-
-    void CryptGrabberComponent::Deactivate()
-    {
-        CryptGrabberRequestBus::Handler::BusDisconnect(GetEntityId());
-    }
-
     void CryptGrabberComponent::Reflect(AZ::ReflectContext* context)
     {
         if (auto serializeContext = azrtti_cast<AZ::SerializeContext*>(context))
@@ -61,5 +51,26 @@ namespace CourseProject
 
     void CryptGrabberComponent::GetDependentServices([[maybe_unused]] AZ::ComponentDescriptor::DependencyArrayType& dependent)
     {
+    }
+
+    void CryptGrabberComponent::Activate()
+    {
+        CryptGrabberRequestBus::Handler::BusConnect(GetEntityId());
+        AZ::TickBus::Handler::BusConnect();
+    }
+
+    void CryptGrabberComponent::Deactivate()
+    {
+        AZ::TickBus::Handler::BusDisconnect();
+        CryptGrabberRequestBus::Handler::BusDisconnect(GetEntityId());
+    }
+
+    void CryptGrabberComponent::OnTick([[maybe_unused]] float deltaTime, [[maybe_unused]] AZ::ScriptTimePoint time)
+    {
+    }
+
+    int CryptGrabberComponent::GetTickOrder()
+    {
+        return AZ::TICK_GAME;
     }
 } // namespace CourseProject

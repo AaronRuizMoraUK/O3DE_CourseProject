@@ -12,61 +12,6 @@ namespace CourseProject
 {
     AZ_COMPONENT_IMPL(MoverComponent, "MoverComponent", "{DDA89E4C-0FAC-4C79-AFE8-C65010D6FA6F}");
 
-    void MoverComponent::Activate()
-    {
-        m_startLocation = GetEntity()->GetTransform()->GetLocalTranslation();
-
-        MoverRequestBus::Handler::BusConnect(GetEntityId());
-        AZ::TickBus::Handler::BusConnect();
-    }
-
-    void MoverComponent::Deactivate()
-    {
-        AZ::TickBus::Handler::BusDisconnect();
-        MoverRequestBus::Handler::BusDisconnect(GetEntityId());
-    }
-
-    // AZ::TickBus::Handler overrides ...
-    void MoverComponent::OnTick(float deltaTime, [[maybe_unused]] AZ::ScriptTimePoint time)
-    {
-        MovePlatform(deltaTime);
-        RotatePlatform(deltaTime);
-    }
-
-    int MoverComponent::GetTickOrder()
-    {
-        return AZ::TICK_GAME;
-    }
-
-    void MoverComponent::MovePlatform(float deltaTime)
-    {
-        auto* transform = GetEntity()->GetTransform();
-
-        AZ::Vector3 currentLocation = transform->GetLocalTranslation() + m_moveVelocity * deltaTime;
-
-        // New location will reach or surpass the move distance?
-        if (m_startLocation.GetDistance(currentLocation) >= m_moveDistance)
-        {
-            // Reset the start location to the other extreme
-            m_startLocation += m_moveVelocity.GetNormalizedSafe() * m_moveDistance;
-            currentLocation = m_startLocation;
-
-            // Reverse the velocity to go in the opposite direction from the next frame
-            m_moveVelocity = -m_moveVelocity;
-        }
-
-        transform->SetLocalTranslation(currentLocation);
-    }
-
-    void MoverComponent::RotatePlatform([[maybe_unused]] float deltaTime)
-    {
-        auto* transform = GetEntity()->GetTransform();
-
-        AZ::Vector3 currentRotation = transform->GetLocalRotation() + m_rotateVelocity * deltaTime * (AZ::Constants::Pi / 180.0f);
-
-        transform->SetLocalRotation(currentRotation);
-    }
-
     void MoverComponent::Reflect(AZ::ReflectContext* context)
     {
         if (auto serializeContext = azrtti_cast<AZ::SerializeContext*>(context))
@@ -116,5 +61,59 @@ namespace CourseProject
 
     void MoverComponent::GetDependentServices([[maybe_unused]] AZ::ComponentDescriptor::DependencyArrayType& dependent)
     {
+    }
+
+    void MoverComponent::Activate()
+    {
+        m_startLocation = GetEntity()->GetTransform()->GetLocalTranslation();
+
+        MoverRequestBus::Handler::BusConnect(GetEntityId());
+        AZ::TickBus::Handler::BusConnect();
+    }
+
+    void MoverComponent::Deactivate()
+    {
+        AZ::TickBus::Handler::BusDisconnect();
+        MoverRequestBus::Handler::BusDisconnect(GetEntityId());
+    }
+
+    void MoverComponent::OnTick(float deltaTime, [[maybe_unused]] AZ::ScriptTimePoint time)
+    {
+        MovePlatform(deltaTime);
+        RotatePlatform(deltaTime);
+    }
+
+    int MoverComponent::GetTickOrder()
+    {
+        return AZ::TICK_GAME;
+    }
+
+    void MoverComponent::MovePlatform(float deltaTime)
+    {
+        auto* transform = GetEntity()->GetTransform();
+
+        AZ::Vector3 currentLocation = transform->GetLocalTranslation() + m_moveVelocity * deltaTime;
+
+        // New location will reach or surpass the move distance?
+        if (m_startLocation.GetDistance(currentLocation) >= m_moveDistance)
+        {
+            // Reset the start location to the other extreme
+            m_startLocation += m_moveVelocity.GetNormalizedSafe() * m_moveDistance;
+            currentLocation = m_startLocation;
+
+            // Reverse the velocity to go in the opposite direction from the next frame
+            m_moveVelocity = -m_moveVelocity;
+        }
+
+        transform->SetLocalTranslation(currentLocation);
+    }
+
+    void MoverComponent::RotatePlatform([[maybe_unused]] float deltaTime)
+    {
+        auto* transform = GetEntity()->GetTransform();
+
+        AZ::Vector3 currentRotation = transform->GetLocalRotation() + m_rotateVelocity * deltaTime * (AZ::Constants::Pi / 180.0f);
+
+        transform->SetLocalRotation(currentRotation);
     }
 } // namespace CourseProject

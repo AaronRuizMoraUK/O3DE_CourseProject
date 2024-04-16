@@ -2,6 +2,7 @@
 #pragma once
 
 #include <AzCore/Component/Component.h>
+#include <AzCore/Component/TickBus.h>
 #include <CourseProject/CryptTriggerInterface.h>
 
 namespace CourseProject
@@ -9,6 +10,7 @@ namespace CourseProject
     class CryptTriggerComponent
         : public AZ::Component
         , public CryptTriggerRequestBus::Handler
+        , public AZ::TickBus::Handler
     {
     public:
         AZ_COMPONENT_DECL(CryptTriggerComponent);
@@ -76,5 +78,9 @@ namespace CourseProject
         * Deactivate() implementation can handle this scenario.
         */
         void Deactivate() override;
+
+        // AZ::TickBus::Handler overrides ...
+        void OnTick(float deltaTime, AZ::ScriptTimePoint time) override;
+        int GetTickOrder() override;
     };
 } // namespace CourseProject
