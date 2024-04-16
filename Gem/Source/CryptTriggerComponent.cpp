@@ -4,6 +4,7 @@
 #include <AzCore/Serialization/SerializeContext.h>
 #include <AzCore/Serialization/EditContext.h>
 #include <AzCore/RTTI/BehaviorContext.h>
+#include <AzCore/Component/TransformBus.h>
 #include <AzCore/Console/ILogger.h>
 #include <AzFramework/Physics/Common/PhysicsSimulatedBody.h>
 #include <AzFramework/Physics/PhysicsSystem.h>
@@ -154,25 +155,14 @@ namespace CourseProject
         {
             if (m_triggersOnce)
             {
-                /*
-                const AZStd::string_view accepted("Accepted");
-                if (!AcceptableActor->ActorHasTag(Accepted))
-                {
-                    // Disable acceptable actor's physics and grabber collisions.
-                    if (auto PrimitiveComponent = Cast<UPrimitiveComponent>(AcceptableActor->GetRootComponent()))
-                    {
-                        PrimitiveComponent->SetSimulatePhysics(false);
-                        PrimitiveComponent->SetCollisionResponseToChannel(UGrabber::CollisionChannel, ECollisionResponse::ECR_Ignore);
-                    }
+                // Disconnect from all the buses and leave the mover moving.
+                Deactivate();
 
-                    // Attach the acceptable actor to the trigger's root component.
-                    // This way the actor moves with the trigger and won't release the trigger.
-                    AcceptableActor->AttachToComponent(this, FAttachmentTransformRules::KeepWorldTransform);
+                // Disable acceptable entity's physics and collisions
+                Physics::RigidBodyRequestBus::Event(m_acceptableEntityId, &Physics::RigidBodyRequests::DisablePhysics);
 
-                    // Use "Accepted" tag to mark it as used and avoid reattaching every frame.
-                    AcceptableActor->Tags.Add(Accepted);
-                }
-                */
+                // Attach the acceptable entity to the mover so it moves with it.
+                AZ::TransformBus::Event(m_acceptableEntityId, &AZ::TransformInterface::SetParent, m_cryptMoverEntityId);
             }
 
             // Start moving the mover.
@@ -205,9 +195,12 @@ namespace CourseProject
         }
 
         bool hasAcceptableTag = false;
+        LmbrCentral::TagComponentRequestBus::EventResult(hasAcceptableTag, entityId, 
+            &LmbrCentral::TagComponentRequests::HasTag, LmbrCentral::Tag(m_acceptableEntityTag));
+
         bool hasGrabbedTag = false;
-        LmbrCentral::TagComponentRequestBus::EventResult(hasAcceptableTag, entityId, &LmbrCentral::TagComponentRequests::HasTag, LmbrCentral::Tag(m_acceptableEntityTag));
-        LmbrCentral::TagComponentRequestBus::EventResult(hasGrabbedTag, entityId, &LmbrCentral::TagComponentRequests::HasTag, LmbrCentral::Tag("GrabbedTag"));
+        LmbrCentral::TagComponentRequestBus::EventResult(hasGrabbedTag, entityId, 
+            &LmbrCentral::TagComponentRequests::HasTag, LmbrCentral::Tag("Grabbed"));
 
         if (hasAcceptableTag && !hasGrabbedTag)
         {

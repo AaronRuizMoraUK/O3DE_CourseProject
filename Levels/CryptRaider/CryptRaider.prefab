@@ -254,6 +254,11 @@
                     "Id": 6472623349872972660,
                     "Parent Entity": "Entity_[1146574390643]",
                     "Transform Data": {
+                        "Translate": [
+                            2.8488733768463135,
+                            -2.0991806983947754,
+                            5.837765693664551
+                        ],
                         "Rotate": [
                             0.0,
                             0.10000000149011612,
@@ -283,18 +288,6 @@
                 "Component_[9439770997198325425]": {
                     "$type": "EditorLockComponent",
                     "Id": 9439770997198325425
-                },
-                "CryptMoverComponent": {
-                    "$type": "GenericComponentWrapper",
-                    "Id": 7964179550915884207,
-                    "m_template": {
-                        "$type": "CryptMoverComponent",
-                        "MoveOffset": [
-                            0.0,
-                            0.0,
-                            4.0
-                        ]
-                    }
                 },
                 "EditorMeshColliderComponent": {
                     "$type": "EditorMeshColliderComponent",
@@ -335,8 +328,6 @@
                     "Id": 4421350470382512376,
                     "Configuration": {
                         "entityId": "",
-                        "Kinematic": true,
-                        "Gravity Enabled": false,
                         "Mass": 1703.6539306640625,
                         "Centre of mass offset": [
                             -0.0001354251435259357,
@@ -355,6 +346,13 @@
                             200.73190307617188
                         ]
                     }
+                },
+                "EditorTagComponent": {
+                    "$type": "EditorTagComponent",
+                    "Id": 7134485038423689182,
+                    "Tags": [
+                        "Molon"
+                    ]
                 }
             }
         },
@@ -495,6 +493,18 @@
             "Id": "Entity_[672477656169]",
             "Name": "CryptTrigger",
             "Components": {
+                "CryptMoverComponent": {
+                    "$type": "GenericComponentWrapper",
+                    "Id": 6605350938184817549,
+                    "m_template": {
+                        "$type": "CryptMoverComponent",
+                        "MoveOffset": [
+                            0.0,
+                            0.0,
+                            -4.0
+                        ]
+                    }
+                },
                 "CryptTriggerComponent": {
                     "$type": "GenericComponentWrapper",
                     "Id": 2926115217688122592,
@@ -509,6 +519,9 @@
                     "ColliderConfiguration": {
                         "CollisionLayer": {
                             "Index": 4
+                        },
+                        "CollisionGroupId": {
+                            "GroupId": "{778E7615-9688-483D-B3A1-0F1355A6BEAC}"
                         },
                         "Trigger": true,
                         "MaterialSlots": {
@@ -558,6 +571,14 @@
                     "$type": "EditorPendingCompositionComponent",
                     "Id": 4125441629267922929
                 },
+                "EditorRigidBodyComponent": {
+                    "$type": "EditorRigidBodyComponent",
+                    "Id": 2285085116987829357,
+                    "Configuration": {
+                        "entityId": "",
+                        "Kinematic": true
+                    }
+                },
                 "EditorScriptCanvasComponent": {
                     "$type": "EditorScriptCanvasComponent",
                     "Id": 744885835301073628,
@@ -599,7 +620,7 @@
                                         },
                                         "isNullPointer": false,
                                         "$type": "EntityId",
-                                        "value": "Entity_[1172344194419]"
+                                        "value": "Entity_[672477656169]"
                                     },
                                     "InputControlVisibility": {
                                         "Value": 850104567
@@ -613,10 +634,6 @@
                             ]
                         }
                     }
-                },
-                "EditorStaticRigidBodyComponent": {
-                    "$type": "EditorStaticRigidBodyComponent",
-                    "Id": 6642428688616295281
                 },
                 "EditorVisibilityComponent": {
                     "$type": "EditorVisibilityComponent",
@@ -649,23 +666,12 @@
                 {
                     "op": "replace",
                     "path": "/ContainerEntity/Components/TransformComponent/Transform Data/Translate/0",
-                    "value": 0.27347826957702637
+                    "value": 3.761251926422119
                 },
                 {
                     "op": "replace",
                     "path": "/ContainerEntity/Components/TransformComponent/Transform Data/Translate/1",
-                    "value": -5.221106052398682
-                },
-                {
-                    "op": "add",
-                    "path": "/Entities/Entity_[9625824282606]/Components/EditorTagComponent",
-                    "value": {
-                        "$type": "EditorTagComponent",
-                        "Id": 79733864941646770,
-                        "Tags": [
-                            "Molon"
-                        ]
-                    }
+                    "value": -8.364137649536133
                 }
             ]
         }
