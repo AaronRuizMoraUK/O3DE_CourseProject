@@ -21,6 +21,7 @@
                 "Child Entity Order": [
                     "Entity_[1176639161715]",
                     "Entity_[1172344194419]",
+                    "Entity_[473934174765]",
                     "Instance_[1727982091429]/ContainerEntity",
                     "Entity_[672477656169]"
                 ]
@@ -255,15 +256,16 @@
                     "Parent Entity": "Entity_[1146574390643]",
                     "Transform Data": {
                         "Translate": [
-                            2.8488733768463135,
+                            8.581582069396973,
                             -2.0991806983947754,
-                            5.837765693664551
+                            5.827760219573975
                         ],
                         "Rotate": [
                             0.0,
                             0.10000000149011612,
                             180.0
-                        ]
+                        ],
+                        "UniformScale": 0.30000001192092896
                     }
                 },
                 "Component_[6495255223970673916]": {
@@ -293,6 +295,12 @@
                     "$type": "EditorMeshColliderComponent",
                     "Id": 3497175963803054694,
                     "ColliderConfiguration": {
+                        "CollisionLayer": {
+                            "Index": 5
+                        },
+                        "CollisionGroupId": {
+                            "GroupId": "{778E7615-9688-483D-B3A1-0F1355A6BEAC}"
+                        },
                         "MaterialSlots": {
                             "Slots": [
                                 {
@@ -311,6 +319,11 @@
                                 "assetHint": "assets/shaderball.fbx.pxmesh"
                             },
                             "Configuration": {
+                                "Scale": [
+                                    0.30000001192092896,
+                                    0.30000001192092896,
+                                    0.30000001192092896
+                                ],
                                 "PhysicsAsset": {
                                     "assetId": {
                                         "guid": "{D1F7E758-F1C3-5C80-84A5-C975810EB25F}",
@@ -328,22 +341,22 @@
                     "Id": 4421350470382512376,
                     "Configuration": {
                         "entityId": "",
-                        "Mass": 1703.6539306640625,
+                        "Mass": 45.9986572265625,
                         "Centre of mass offset": [
-                            -0.0001354251435259357,
-                            0.013299399055540562,
-                            0.6454747915267944
+                            -0.000040628379792906344,
+                            0.003989819437265396,
+                            0.19364242255687714
                         ],
                         "Inertia tensor": [
-                            283.9302978515625,
+                            0.6899510025978088,
                             0.0,
                             0.0,
                             0.0,
-                            296.476318359375,
+                            0.7204379439353943,
                             0.0,
                             0.0,
                             0.0,
-                            200.73190307617188
+                            0.48777857422828674
                         ]
                     }
                 },
@@ -486,6 +499,153 @@
                 "Component_[931091830724002070]": {
                     "$type": "EditorInspectorComponent",
                     "Id": 931091830724002070
+                }
+            }
+        },
+        "Entity_[473934174765]": {
+            "Id": "Entity_[473934174765]",
+            "Name": "Shader Ball",
+            "Components": {
+                "Component_[10789351944715265527]": {
+                    "$type": "EditorOnlyEntityComponent",
+                    "Id": 10789351944715265527
+                },
+                "Component_[12037033284781049225]": {
+                    "$type": "EditorEntitySortComponent",
+                    "Id": 12037033284781049225
+                },
+                "Component_[13759153306105970079]": {
+                    "$type": "EditorPendingCompositionComponent",
+                    "Id": 13759153306105970079
+                },
+                "Component_[14135560884830586279]": {
+                    "$type": "EditorInspectorComponent",
+                    "Id": 14135560884830586279
+                },
+                "Component_[16247165675903986673]": {
+                    "$type": "EditorVisibilityComponent",
+                    "Id": 16247165675903986673
+                },
+                "Component_[18082433625958885247]": {
+                    "$type": "EditorDisabledCompositionComponent",
+                    "Id": 18082433625958885247
+                },
+                "Component_[6472623349872972660]": {
+                    "$type": "{27F1E1A1-8D9D-4C3B-BD3A-AFB9762449C0} TransformComponent",
+                    "Id": 6472623349872972660,
+                    "Parent Entity": "Entity_[1146574390643]",
+                    "Transform Data": {
+                        "Translate": [
+                            -2.73638653755188,
+                            -2.0991806983947754,
+                            5.847513675689697
+                        ],
+                        "Rotate": [
+                            0.0,
+                            0.10000000149011612,
+                            180.0
+                        ],
+                        "UniformScale": 0.30000001192092896
+                    }
+                },
+                "Component_[6495255223970673916]": {
+                    "$type": "AZ::Render::EditorMeshComponent",
+                    "Id": 6495255223970673916,
+                    "Controller": {
+                        "Configuration": {
+                            "ModelAsset": {
+                                "assetId": {
+                                    "guid": "{D1F7E758-F1C3-5C80-84A5-C975810EB25F}",
+                                    "subId": 279578499
+                                },
+                                "assetHint": "assets/shaderball.fbx.azmodel"
+                            }
+                        }
+                    }
+                },
+                "Component_[8550141614185782969]": {
+                    "$type": "EditorEntityIconComponent",
+                    "Id": 8550141614185782969
+                },
+                "Component_[9439770997198325425]": {
+                    "$type": "EditorLockComponent",
+                    "Id": 9439770997198325425
+                },
+                "EditorMeshColliderComponent": {
+                    "$type": "EditorMeshColliderComponent",
+                    "Id": 3497175963803054694,
+                    "ColliderConfiguration": {
+                        "CollisionLayer": {
+                            "Index": 5
+                        },
+                        "CollisionGroupId": {
+                            "GroupId": "{778E7615-9688-483D-B3A1-0F1355A6BEAC}"
+                        },
+                        "MaterialSlots": {
+                            "Slots": [
+                                {
+                                    "Name": "shaderball_01"
+                                }
+                            ]
+                        }
+                    },
+                    "ShapeConfiguration": {
+                        "PhysicsAsset": {
+                            "Asset": {
+                                "assetId": {
+                                    "guid": "{D1F7E758-F1C3-5C80-84A5-C975810EB25F}",
+                                    "subId": 2057742194
+                                },
+                                "assetHint": "assets/shaderball.fbx.pxmesh"
+                            },
+                            "Configuration": {
+                                "Scale": [
+                                    0.30000001192092896,
+                                    0.30000001192092896,
+                                    0.30000001192092896
+                                ],
+                                "PhysicsAsset": {
+                                    "assetId": {
+                                        "guid": "{D1F7E758-F1C3-5C80-84A5-C975810EB25F}",
+                                        "subId": 2057742194
+                                    },
+                                    "loadBehavior": "QueueLoad",
+                                    "assetHint": "assets/shaderball.fbx.pxmesh"
+                                }
+                            }
+                        }
+                    }
+                },
+                "EditorRigidBodyComponent": {
+                    "$type": "EditorRigidBodyComponent",
+                    "Id": 4421350470382512376,
+                    "Configuration": {
+                        "entityId": "",
+                        "Mass": 45.9986572265625,
+                        "Centre of mass offset": [
+                            -0.000040628379792906344,
+                            0.003989819437265396,
+                            0.19364242255687714
+                        ],
+                        "Inertia tensor": [
+                            0.6899510025978088,
+                            0.0,
+                            0.0,
+                            0.0,
+                            0.7204379439353943,
+                            0.0,
+                            0.0,
+                            0.0,
+                            0.48777857422828674
+                        ]
+                    }
+                },
+                "EditorTagComponent": {
+                    "$type": "EditorTagComponent",
+                    "Id": 7134485038423689182,
+                    "Tags": [
+                        "Molon"
+                    ]
                 }
             }
         },
@@ -672,6 +832,73 @@
                     "op": "replace",
                     "path": "/ContainerEntity/Components/TransformComponent/Transform Data/Translate/1",
                     "value": -8.364137649536133
+                },
+                {
+                    "op": "add",
+                    "path": "/Entities/Entity_[9617234348014]/Components/CryptGrabberComponent",
+                    "value": {
+                        "$type": "GenericComponentWrapper",
+                        "Id": 741446768456440392,
+                        "m_template": {
+                            "$type": "CryptGrabberComponent",
+                            "Id": 0,
+                            "MaxGrabDistance": 3.299999952316284,
+                            "GrabSphereRadius": 1.0,
+                            "HoldDistance": 1.0,
+                            "DropDistance": 5.0,
+                            "CollisionGroupId": {
+                                "GroupId": "{CE44A421-A974-432F-A54C-5CA5EBB18C3B}"
+                            },
+                            "Debug": true
+                        }
+                    }
+                },
+                {
+                    "op": "add",
+                    "path": "/Entities/Entity_[9617234348014]/Components/EditorScriptCanvasComponent",
+                    "value": {
+                        "$type": "EditorScriptCanvasComponent",
+                        "Id": 11293486070842996827,
+                        "configuration": {
+                            "sourceHandle": {
+                                "id": "{DA6C4C42-7B84-59E2-AB56-DB2A95965E35}",
+                                "path": "ScriptCanvas/GrabberInput.scriptcanvas"
+                            },
+                            "sourceName": "GrabberInput.scriptcanvas",
+                            "propertyOverrides": {
+                                "source": {
+                                    "id": "{DA6C4C42-7B84-59E2-AB56-DB2A95965E35}",
+                                    "path": "ScriptCanvas/GrabberInput.scriptcanvas"
+                                },
+                                "variables": [],
+                                "entityId": [],
+                                "overrides": [],
+                                "overridesUnused": [],
+                                "dependencies": []
+                            }
+                        }
+                    }
+                },
+                {
+                    "op": "add",
+                    "path": "/Entities/Entity_[9617234348014]/Components/InputConfigurationComponent",
+                    "value": {
+                        "$type": "GenericComponentWrapper",
+                        "Id": 235416263311837883,
+                        "m_template": {
+                            "$type": "InputConfigurationComponent",
+                            "Id": 0,
+                            "Input Event Bindings": {
+                                "assetId": {
+                                    "guid": "{BFF5C455-E0B6-5FE2-9CB5-6D107B5A66CF}",
+                                    "subId": 0
+                                },
+                                "loadBehavior": "QueueLoad",
+                                "assetHint": "assets/inputs.inputbindings"
+                            },
+                            "Local Player Index": -1
+                        }
+                    }
                 }
             ]
         }

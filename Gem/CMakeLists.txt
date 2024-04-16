@@ -51,6 +51,7 @@ ly_add_target(
             Gem::${gem_name}.Private.Object
             AZ::AzCore
             AZ::AzFramework
+            Gem::LmbrCentral.API
 )
 
 # Include the gem name into the Client Module source file

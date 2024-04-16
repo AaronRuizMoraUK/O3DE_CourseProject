@@ -3,6 +3,10 @@
 
 #include <AzCore/Component/Component.h>
 #include <AzCore/Component/TickBus.h>
+#include <AzCore/std/optional.h>
+#include <AzFramework/Entity/EntityDebugDisplayBus.h>
+#include <AzFramework/Physics/Collision/CollisionGroups.h>
+#include <AzFramework/Physics/Common/PhysicsSceneQueries.h>
 #include <CourseProject/CryptGrabberInterface.h>
 
 namespace CourseProject
@@ -11,6 +15,7 @@ namespace CourseProject
         : public AZ::Component
         , public CryptGrabberRequestBus::Handler
         , public AZ::TickBus::Handler
+        , protected AzFramework::EntityDebugDisplayEventBus::Handler
     {
     public:
         AZ_COMPONENT_DECL(CryptGrabberComponent);
@@ -55,6 +60,13 @@ namespace CourseProject
         */
         static void GetDependentServices(AZ::ComponentDescriptor::DependencyArrayType& dependent);
 
+        // CryptGrabberRequestBus::Handler overrides ...
+        void Grab() override;
+        void Release() override;
+        bool IsGrabbing() const override;
+        bool IsDebugEnabled() const override;
+        void EnableDebug(bool enable) override;
+
     protected:
         /*
         * Puts this component into an active state.
@@ -81,6 +93,33 @@ namespace CourseProject
 
         // AZ::TickBus::Handler overrides ...
         void OnTick(float deltaTime, AZ::ScriptTimePoint time) override;
-        int GetTickOrder() override;
+
+        // AzFramework::EntityDebugDisplayEventBus::Handler overrides ...
+        void DisplayEntityViewport(
+            const AzFramework::ViewportInfo& viewportInfo,
+            AzFramework::DebugDisplayRequests& debugDisplay) override;
+
+    private:
+        float m_maxGrabDistance = 3.3f;
+
+        float m_grabSphereRadius = 1.0f;
+
+        float m_holdDistance = 1.0f;
+
+        float m_dropDistance = 5.0f;
+
+        AzPhysics::CollisionGroups::Id m_collisionGroupId;
+
+        bool m_debug = false;
+
+    private:
+        AZ::EntityId m_grabbedEntityId;
+
+        AZ::Transform m_grabbedEntityLocalTM;
+        AZ::Vector3 m_grabbedTargetLocalOffset;
+
+        AzPhysics::CollisionGroup m_collisionGroup = AzPhysics::CollisionGroup::All;
+
+        AZStd::optional<AzPhysics::SceneQueryHit> CheckHit() const;
     };
 } // namespace CourseProject

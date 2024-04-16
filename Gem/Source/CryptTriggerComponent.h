@@ -95,7 +95,6 @@ namespace CourseProject
 
         // AZ::TickBus::Handler overrides ...
         void OnTick(float deltaTime, AZ::ScriptTimePoint time) override;
-        int GetTickOrder() override;
 
     private:
         // Configuration of the component
@@ -104,10 +103,10 @@ namespace CourseProject
         bool m_triggersOnce = true;
 
     private:
-        AZ::EntityId m_cryptMoverEntityId = AZ::EntityId(AZ::EntityId::InvalidEntityId);
+        AZ::EntityId m_cryptMoverEntityId;
         CryptMoverRequests* m_cryptMover = nullptr;
 
-        AZ::EntityId m_acceptableEntityId = AZ::EntityId(AZ::EntityId::InvalidEntityId);
+        AZ::EntityId m_acceptableEntityId;
 
         AzPhysics::SimulatedBodyEvents::OnTriggerEnter::Handler m_onTriggerEnterHandler;
         AzPhysics::SimulatedBodyEvents::OnTriggerExit::Handler m_onTriggerExitHandler;

@@ -3,6 +3,7 @@
         "Gems": {
             "PhysX": {
                 "PhysXSystemConfiguration": {
+                    "FixedTimeStep": 0.01600000075995922,
                     "CollisionConfig": {
                         "Layers": {
                             "LayerNames": [
@@ -11,7 +12,7 @@
                                 "Player",
                                 "Platforms",
                                 "Triggers",
-                                {},
+                                "PickUps",
                                 {},
                                 {},
                                 {},
@@ -113,6 +114,15 @@
                                     "Name": "AllButPlayer",
                                     "Group": {
                                         "Mask": 18446744073709551611
+                                    }
+                                },
+                                {
+                                    "Id": {
+                                        "GroupId": "{CE44A421-A974-432F-A54C-5CA5EBB18C3B}"
+                                    },
+                                    "Name": "PickUpCollision",
+                                    "Group": {
+                                        "Mask": 18446744073709551584
                                     }
                                 }
                             ]

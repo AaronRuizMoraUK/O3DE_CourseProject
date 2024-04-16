@@ -11,6 +11,7 @@
 #include <LmbrCentral/Scripting/TagComponentBus.h>
 
 #include "CourseProject/CryptMoverInterface.h"
+#include "CourseProject/CryptGrabberInterface.h"
 
 namespace CourseProject
 {
@@ -175,11 +176,6 @@ namespace CourseProject
         }
     }
 
-    int CryptTriggerComponent::GetTickOrder()
-    {
-        return AZ::TICK_GAME;
-    }
-
     void CryptTriggerComponent::OnTriggerEnter(const AzPhysics::TriggerEvent& triggerEvent)
     {
         if (!triggerEvent.m_otherBody)
@@ -200,7 +196,7 @@ namespace CourseProject
 
         bool hasGrabbedTag = false;
         LmbrCentral::TagComponentRequestBus::EventResult(hasGrabbedTag, entityId, 
-            &LmbrCentral::TagComponentRequests::HasTag, LmbrCentral::Tag("Grabbed"));
+            &LmbrCentral::TagComponentRequests::HasTag, GrabbedTag);
 
         if (hasAcceptableTag && !hasGrabbedTag)
         {

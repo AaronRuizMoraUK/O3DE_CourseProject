@@ -113,9 +113,4 @@ namespace CourseProject
             GetEntity()->GetTransform()->SetLocalTranslation(targetLocation);
         }
     }
-
-    int CryptMoverComponent::GetTickOrder()
-    {
-        return AZ::TICK_GAME;
-    }
 } // namespace CourseProject

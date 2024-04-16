@@ -84,11 +84,6 @@ namespace CourseProject
         RotatePlatform(deltaTime);
     }
 
-    int MoverComponent::GetTickOrder()
-    {
-        return AZ::TICK_GAME;
-    }
-
     void MoverComponent::MovePlatform(float deltaTime)
     {
         auto* transform = GetEntity()->GetTransform();
