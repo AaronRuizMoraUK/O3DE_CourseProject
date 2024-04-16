@@ -3,6 +3,7 @@
 
 #include <AzCore/Component/Component.h>
 #include <AzCore/Component/TickBus.h>
+#include <AzCore/Math/Vector3.h>
 #include <CourseProject/CryptMoverInterface.h>
 
 namespace CourseProject
@@ -14,6 +15,9 @@ namespace CourseProject
     {
     public:
         AZ_COMPONENT_DECL(CryptMoverComponent);
+        
+        // CryptMoverRequestBus::Handler overrides ...
+        void SetShouldMove(bool shouldMove) override;
 
         /*
         * Reflects component data into the reflection contexts, including the serialization, edit, and behavior contexts.
@@ -82,5 +86,16 @@ namespace CourseProject
         // AZ::TickBus::Handler overrides ...
         void OnTick(float deltaTime, AZ::ScriptTimePoint time) override;
         int GetTickOrder() override;
+
+    private:
+        // Configuration of the component
+        AZ::Vector3 m_moveOffset = AZ::Vector3::CreateZero();
+
+        float m_moveTime = 4.0f;
+
+        bool m_shouldMove = false;
+
+    private:
+        AZ::Vector3 m_startLocation;
     };
 } // namespace CourseProject

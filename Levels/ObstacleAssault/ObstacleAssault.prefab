@@ -658,7 +658,7 @@
                 {
                     "op": "replace",
                     "path": "/ContainerEntity/Components/TransformComponent/Transform Data/Translate/0",
-                    "value": 15.177628517150879
+                    "value": 15.17762851715088
                 },
                 {
                     "op": "replace",
@@ -808,7 +808,7 @@
                 {
                     "op": "replace",
                     "path": "/ContainerEntity/Components/TransformComponent/Transform Data/Translate/0",
-                    "value": -1.9477272033691406
+                    "value": -1.9477272033691408
                 },
                 {
                     "op": "replace",
@@ -838,7 +838,7 @@
                 {
                     "op": "replace",
                     "path": "/ContainerEntity/Components/TransformComponent/Transform Data/Translate/1",
-                    "value": 11.197419166564941
+                    "value": 11.19741916656494
                 },
                 {
                     "op": "replace",

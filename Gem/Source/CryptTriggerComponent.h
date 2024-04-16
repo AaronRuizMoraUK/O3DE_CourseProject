@@ -3,6 +3,9 @@
 
 #include <AzCore/Component/Component.h>
 #include <AzCore/Component/TickBus.h>
+#include <AzFramework/Physics/Collision/CollisionEvents.h>
+#include <AzFramework/Physics/Common/PhysicsSimulatedBodyEvents.h>
+#include <AzFramework/Physics/RigidBodyBus.h>
 #include <CourseProject/CryptTriggerInterface.h>
 
 namespace CourseProject
@@ -11,9 +14,13 @@ namespace CourseProject
         : public AZ::Component
         , public CryptTriggerRequestBus::Handler
         , public AZ::TickBus::Handler
+        , protected Physics::RigidBodyNotificationBus::Handler
     {
     public:
         AZ_COMPONENT_DECL(CryptTriggerComponent);
+
+        // CryptTriggerRequestBus::Handler overrides ...
+        void SetCryptMover(AZ::EntityId cryptMoverEntityId) override;
 
         /*
         * Reflects component data into the reflection contexts, including the serialization, edit, and behavior contexts.
@@ -56,6 +63,8 @@ namespace CourseProject
         static void GetDependentServices(AZ::ComponentDescriptor::DependencyArrayType& dependent);
 
     protected:
+        void Init() override;
+
         /*
         * Puts this component into an active state.
         * The system calls this function once during activation of each entity that owns the
@@ -79,8 +88,29 @@ namespace CourseProject
         */
         void Deactivate() override;
 
+        // Physics::RigidBodyNotifications overrides...
+        void OnPhysicsEnabled(const AZ::EntityId& entityId) override;
+        void OnPhysicsDisabled(const AZ::EntityId& entityId) override;
+
         // AZ::TickBus::Handler overrides ...
         void OnTick(float deltaTime, AZ::ScriptTimePoint time) override;
         int GetTickOrder() override;
+
+    private:
+        // Configuration of the component
+        AZStd::string m_acceptableEntityTag;
+
+        bool m_triggersOnce = true;
+
+    private:
+        CryptMoverRequests* m_cryptMover = nullptr;
+
+        AZ::EntityId m_acceptableEntityId = AZ::EntityId(AZ::EntityId::InvalidEntityId);
+
+        AzPhysics::SimulatedBodyEvents::OnTriggerEnter::Handler m_onTriggerEnterHandler;
+        AzPhysics::SimulatedBodyEvents::OnTriggerExit::Handler m_onTriggerExitHandler;
+
+        void OnTriggerEnter(const AzPhysics::TriggerEvent& triggerEvent);
+        void OnTriggerExit(const AzPhysics::TriggerEvent& triggerEvent);
     };
 } // namespace CourseProject

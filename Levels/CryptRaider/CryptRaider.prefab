@@ -21,7 +21,8 @@
                 "Child Entity Order": [
                     "Entity_[1176639161715]",
                     "Entity_[1172344194419]",
-                    "Instance_[1727982091429]/ContainerEntity"
+                    "Instance_[1727982091429]/ContainerEntity",
+                    "Entity_[672477656169]"
                 ]
             },
             "Component_[15230859088967841193]": {
@@ -283,6 +284,18 @@
                     "$type": "EditorLockComponent",
                     "Id": 9439770997198325425
                 },
+                "CryptMoverComponent": {
+                    "$type": "GenericComponentWrapper",
+                    "Id": 7964179550915884207,
+                    "m_template": {
+                        "$type": "CryptMoverComponent",
+                        "MoveOffset": [
+                            0.0,
+                            0.0,
+                            4.0
+                        ]
+                    }
+                },
                 "EditorMeshColliderComponent": {
                     "$type": "EditorMeshColliderComponent",
                     "Id": 3497175963803054694,
@@ -317,9 +330,31 @@
                         }
                     }
                 },
-                "EditorStaticRigidBodyComponent": {
-                    "$type": "EditorStaticRigidBodyComponent",
-                    "Id": 3342864766171942150
+                "EditorRigidBodyComponent": {
+                    "$type": "EditorRigidBodyComponent",
+                    "Id": 4421350470382512376,
+                    "Configuration": {
+                        "entityId": "",
+                        "Kinematic": true,
+                        "Gravity Enabled": false,
+                        "Mass": 1703.6539306640625,
+                        "Centre of mass offset": [
+                            -0.0001354251435259357,
+                            0.013299399055540562,
+                            0.6454747915267944
+                        ],
+                        "Inertia tensor": [
+                            283.9302978515625,
+                            0.0,
+                            0.0,
+                            0.0,
+                            296.476318359375,
+                            0.0,
+                            0.0,
+                            0.0,
+                            200.73190307617188
+                        ]
+                    }
                 }
             }
         },
@@ -455,6 +490,151 @@
                     "Id": 931091830724002070
                 }
             }
+        },
+        "Entity_[672477656169]": {
+            "Id": "Entity_[672477656169]",
+            "Name": "CryptTrigger",
+            "Components": {
+                "CryptTriggerComponent": {
+                    "$type": "GenericComponentWrapper",
+                    "Id": 2926115217688122592,
+                    "m_template": {
+                        "$type": "CryptTriggerComponent",
+                        "AcceptableEntityTag": "Molon"
+                    }
+                },
+                "EditorColliderComponent": {
+                    "$type": "EditorColliderComponent",
+                    "Id": 12659226608979675318,
+                    "ColliderConfiguration": {
+                        "CollisionLayer": {
+                            "Index": 4
+                        },
+                        "Trigger": true,
+                        "MaterialSlots": {
+                            "Slots": [
+                                {
+                                    "Name": "Entire object"
+                                }
+                            ]
+                        }
+                    },
+                    "ShapeConfiguration": {
+                        "ShapeType": 1,
+                        "Box": {
+                            "Configuration": [
+                                2.0,
+                                2.0,
+                                2.0
+                            ]
+                        }
+                    }
+                },
+                "EditorDisabledCompositionComponent": {
+                    "$type": "EditorDisabledCompositionComponent",
+                    "Id": 14197303150028146188
+                },
+                "EditorEntityIconComponent": {
+                    "$type": "EditorEntityIconComponent",
+                    "Id": 18297721998052145413
+                },
+                "EditorEntitySortComponent": {
+                    "$type": "EditorEntitySortComponent",
+                    "Id": 17948826439698175097
+                },
+                "EditorInspectorComponent": {
+                    "$type": "EditorInspectorComponent",
+                    "Id": 11790155436202419649
+                },
+                "EditorLockComponent": {
+                    "$type": "EditorLockComponent",
+                    "Id": 6643875070083701907
+                },
+                "EditorOnlyEntityComponent": {
+                    "$type": "EditorOnlyEntityComponent",
+                    "Id": 15358981329699772862
+                },
+                "EditorPendingCompositionComponent": {
+                    "$type": "EditorPendingCompositionComponent",
+                    "Id": 4125441629267922929
+                },
+                "EditorScriptCanvasComponent": {
+                    "$type": "EditorScriptCanvasComponent",
+                    "Id": 744885835301073628,
+                    "configuration": {
+                        "sourceHandle": {
+                            "id": "{61259DF1-ECE6-5425-86E4-DEFBE76ED99C}",
+                            "path": "ScriptCanvas/SetCryptMover.scriptcanvas"
+                        },
+                        "sourceName": "SetCryptMover.scriptcanvas",
+                        "propertyOverrides": {
+                            "source": {
+                                "id": "{61259DF1-ECE6-5425-86E4-DEFBE76ED99C}",
+                                "path": "ScriptCanvas/SetCryptMover.scriptcanvas"
+                            },
+                            "variables": [
+                                {
+                                    "Datum": {
+                                        "isOverloadedStorage": false,
+                                        "scriptCanvasType": {
+                                            "m_type": 1
+                                        },
+                                        "isNullPointer": false,
+                                        "$type": "EntityId",
+                                        "value": ""
+                                    },
+                                    "VariableId": {
+                                        "m_id": "{6F8FD1DE-61D5-440B-BD48-23F4CB3F328C}"
+                                    },
+                                    "VariableName": "CryptMover",
+                                    "InitialValueSource": 1
+                                }
+                            ],
+                            "overrides": [
+                                {
+                                    "Datum": {
+                                        "isOverloadedStorage": false,
+                                        "scriptCanvasType": {
+                                            "m_type": 1
+                                        },
+                                        "isNullPointer": false,
+                                        "$type": "EntityId",
+                                        "value": "Entity_[1172344194419]"
+                                    },
+                                    "InputControlVisibility": {
+                                        "Value": 850104567
+                                    },
+                                    "VariableId": {
+                                        "m_id": "{6F8FD1DE-61D5-440B-BD48-23F4CB3F328C}"
+                                    },
+                                    "VariableName": "CryptMover",
+                                    "InitialValueSource": 1
+                                }
+                            ]
+                        }
+                    }
+                },
+                "EditorStaticRigidBodyComponent": {
+                    "$type": "EditorStaticRigidBodyComponent",
+                    "Id": 6642428688616295281
+                },
+                "EditorVisibilityComponent": {
+                    "$type": "EditorVisibilityComponent",
+                    "Id": 11088646962487545531
+                },
+                "TransformComponent": {
+                    "$type": "{27F1E1A1-8D9D-4C3B-BD3A-AFB9762449C0} TransformComponent",
+                    "Id": 3947028295180282726,
+                    "Parent Entity": "Entity_[1146574390643]",
+                    "Transform Data": {
+                        "Translate": [
+                            2.4932291507720947,
+                            -2.252596378326416,
+                            1.0358307361602783
+                        ]
+                    }
+                }
+            }
         }
     },
     "Instances": {
@@ -469,12 +649,23 @@
                 {
                     "op": "replace",
                     "path": "/ContainerEntity/Components/TransformComponent/Transform Data/Translate/0",
-                    "value": -0.7523117065429688
+                    "value": 0.27347826957702637
                 },
                 {
                     "op": "replace",
                     "path": "/ContainerEntity/Components/TransformComponent/Transform Data/Translate/1",
-                    "value": -3.844019889831543
+                    "value": -5.221106052398682
+                },
+                {
+                    "op": "add",
+                    "path": "/Entities/Entity_[9625824282606]/Components/EditorTagComponent",
+                    "value": {
+                        "$type": "EditorTagComponent",
+                        "Id": 79733864941646770,
+                        "Tags": [
+                            "Molon"
+                        ]
+                    }
                 }
             ]
         }

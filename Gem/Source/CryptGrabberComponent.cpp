@@ -43,6 +43,7 @@ namespace CourseProject
 
     void CryptGrabberComponent::GetIncompatibleServices([[maybe_unused]] AZ::ComponentDescriptor::DependencyArrayType& incompatible)
     {
+        incompatible.push_back(AZ_CRC_CE("CryptGrabberComponentService"));
     }
 
     void CryptGrabberComponent::GetRequiredServices([[maybe_unused]] AZ::ComponentDescriptor::DependencyArrayType& required)

@@ -4,6 +4,12 @@
 #include <AzCore/Serialization/SerializeContext.h>
 #include <AzCore/Serialization/EditContext.h>
 #include <AzCore/RTTI/BehaviorContext.h>
+#include <AzCore/Console/ILogger.h>
+#include <AzFramework/Physics/Common/PhysicsSimulatedBody.h>
+#include <AzFramework/Physics/PhysicsSystem.h>
+#include <LmbrCentral/Scripting/TagComponentBus.h>
+
+#include "CourseProject/CryptMoverInterface.h"
 
 namespace CourseProject
 {
@@ -15,6 +21,8 @@ namespace CourseProject
         {
             serializeContext->Class<CryptTriggerComponent, AZ::Component>()
                 ->Version(1)
+                ->Field("AcceptableEntityTag", &CryptTriggerComponent::m_acceptableEntityTag)
+                ->Field("TriggersOnce", &CryptTriggerComponent::m_triggersOnce)
                 ;
 
             if (AZ::EditContext* editContext = serializeContext->GetEditContext())
@@ -24,6 +32,9 @@ namespace CourseProject
                     ->Attribute(AZ::Edit::Attributes::Category, "Course Project")
                     ->Attribute(AZ::Edit::Attributes::Icon, "Icons/Components/Component_Placeholder.svg")
                     ->Attribute(AZ::Edit::Attributes::AppearsInAddComponentMenu, AZ_CRC_CE("Game"))
+
+                    ->DataElement(AZ::Edit::UIHandlers::Default, &CryptTriggerComponent::m_acceptableEntityTag, "Acceptable Entity Tag", "")
+                    ->DataElement(AZ::Edit::UIHandlers::Default, &CryptTriggerComponent::m_triggersOnce, "Trigger Once", "")
                     ;
             }
         }
@@ -32,6 +43,11 @@ namespace CourseProject
         {
             behaviorContext->Class<CryptTriggerComponent>("CryptTrigger Component Group")
                 ->Attribute(AZ::Script::Attributes::Category, "CourseProject Gem Group")
+                ;
+
+            behaviorContext->EBus<CryptTriggerRequestBus>("CryptTriggerRequestBus")
+                ->Attribute(AZ::Script::Attributes::Category, "CourseProject Gem Group")
+                ->Event("SetCryptMover", &CryptTriggerRequests::SetCryptMover)
                 ;
         }
     }
@@ -53,24 +69,155 @@ namespace CourseProject
     {
     }
 
+    void CryptTriggerComponent::SetCryptMover(AZ::EntityId cryptMoverEntityId)
+    {
+        m_cryptMover = CryptMoverRequestBus::FindFirstHandler(cryptMoverEntityId);
+    }
+
+    void CryptTriggerComponent::Init()
+    {
+        m_onTriggerEnterHandler = AzPhysics::SimulatedBodyEvents::OnTriggerEnter::Handler([this](
+            [[maybe_unused]] AzPhysics::SimulatedBodyHandle bodyHandle,
+            const AzPhysics::TriggerEvent& triggerEvent)
+            {
+                OnTriggerEnter(triggerEvent);
+            });
+
+        m_onTriggerExitHandler = AzPhysics::SimulatedBodyEvents::OnTriggerExit::Handler([this](
+            [[maybe_unused]] AzPhysics::SimulatedBodyHandle bodyHandle,
+            const AzPhysics::TriggerEvent& triggerEvent)
+            {
+                OnTriggerExit(triggerEvent);
+            });
+    }
+
     void CryptTriggerComponent::Activate()
     {
+        // During entity activation the simulated bodies are not created yet.
+        // Connect to RigidBodyNotificationBus to listen when they get enabled to register the trigger handlers.
+        Physics::RigidBodyNotificationBus::Handler::BusConnect(GetEntityId());
+
         CryptTriggerRequestBus::Handler::BusConnect(GetEntityId());
         AZ::TickBus::Handler::BusConnect();
     }
 
     void CryptTriggerComponent::Deactivate()
     {
+        m_onTriggerEnterHandler.Disconnect();
+        m_onTriggerExitHandler.Disconnect();
+
         AZ::TickBus::Handler::BusDisconnect();
         CryptTriggerRequestBus::Handler::BusDisconnect(GetEntityId());
+
+        Physics::RigidBodyNotificationBus::Handler::BusDisconnect();
+    }
+
+    void CryptTriggerComponent::OnPhysicsEnabled(const AZ::EntityId& entityId)
+    {
+        if (auto* physicsSystem = AZ::Interface<AzPhysics::SystemInterface>::Get())
+        {
+            AZStd::pair<AzPhysics::SceneHandle, AzPhysics::SimulatedBodyHandle> foundBody =
+                physicsSystem->FindAttachedBodyHandleFromEntityId(entityId);
+            if (foundBody.first != AzPhysics::InvalidSceneHandle)
+            {
+                AzPhysics::SimulatedBodyEvents::RegisterOnTriggerEnterHandler(
+                    foundBody.first, foundBody.second, m_onTriggerEnterHandler);
+                AzPhysics::SimulatedBodyEvents::RegisterOnTriggerExitHandler(
+                    foundBody.first, foundBody.second, m_onTriggerExitHandler);
+            }
+        }
+    }
+
+    void CryptTriggerComponent::OnPhysicsDisabled([[maybe_unused]] const AZ::EntityId& entityId)
+    {
+        m_onTriggerEnterHandler.Disconnect();
+        m_onTriggerExitHandler.Disconnect();
     }
 
     void CryptTriggerComponent::OnTick([[maybe_unused]] float deltaTime, [[maybe_unused]] AZ::ScriptTimePoint time)
     {
+        // Do nothing if the mover hasnt' been setup
+        if (!m_cryptMover)
+        {
+            return;
+        }
+
+        // While there is an acceptable entity in the trigger, move the mover.
+        if (m_acceptableEntityId.IsValid())
+        {
+            if (m_triggersOnce)
+            {
+                /*
+                const AZStd::string_view accepted("Accepted");
+                if (!AcceptableActor->ActorHasTag(Accepted))
+                {
+                    // Disable acceptable actor's physics and grabber collisions.
+                    if (auto PrimitiveComponent = Cast<UPrimitiveComponent>(AcceptableActor->GetRootComponent()))
+                    {
+                        PrimitiveComponent->SetSimulatePhysics(false);
+                        PrimitiveComponent->SetCollisionResponseToChannel(UGrabber::CollisionChannel, ECollisionResponse::ECR_Ignore);
+                    }
+
+                    // Attach the acceptable actor to the trigger's root component.
+                    // This way the actor moves with the trigger and won't release the trigger.
+                    AcceptableActor->AttachToComponent(this, FAttachmentTransformRules::KeepWorldTransform);
+
+                    // Use "Accepted" tag to mark it as used and avoid reattaching every frame.
+                    AcceptableActor->Tags.Add(Accepted);
+                }
+                */
+            }
+
+            // Start moving the mover.
+            m_cryptMover->SetShouldMove(true);
+        }
+        else
+        {
+            // Stop moving the mover.
+            m_cryptMover->SetShouldMove(false);
+        }
     }
 
     int CryptTriggerComponent::GetTickOrder()
     {
         return AZ::TICK_GAME;
+    }
+
+    void CryptTriggerComponent::OnTriggerEnter(const AzPhysics::TriggerEvent& triggerEvent)
+    {
+        if (!triggerEvent.m_otherBody)
+        {
+            return;
+        }
+
+        // Ignore self
+        AZ::EntityId entityId = triggerEvent.m_otherBody->GetEntityId();
+        if (entityId == GetEntityId())
+        {
+            return;
+        }
+
+        bool hasAcceptableTag = false;
+        bool hasGrabbedTag = false;
+        LmbrCentral::TagComponentRequestBus::EventResult(hasAcceptableTag, entityId, &LmbrCentral::TagComponentRequests::HasTag, LmbrCentral::Tag(m_acceptableEntityTag));
+        LmbrCentral::TagComponentRequestBus::EventResult(hasGrabbedTag, entityId, &LmbrCentral::TagComponentRequests::HasTag, LmbrCentral::Tag("GrabbedTag"));
+
+        if (hasAcceptableTag && !hasGrabbedTag)
+        {
+            m_acceptableEntityId = entityId;
+        }
+    }
+
+    void CryptTriggerComponent::OnTriggerExit(const AzPhysics::TriggerEvent& triggerEvent)
+    {
+        if (!triggerEvent.m_otherBody)
+        {
+            return;
+        }
+
+        if (triggerEvent.m_otherBody->GetEntityId() == m_acceptableEntityId)
+        {
+            m_acceptableEntityId.SetInvalid();
+        }
     }
 } // namespace CourseProject

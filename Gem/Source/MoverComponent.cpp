@@ -53,6 +53,7 @@ namespace CourseProject
 
     void MoverComponent::GetIncompatibleServices([[maybe_unused]] AZ::ComponentDescriptor::DependencyArrayType& incompatible)
     {
+        incompatible.push_back(AZ_CRC_CE("MoverComponentService"));
     }
 
     void MoverComponent::GetRequiredServices([[maybe_unused]] AZ::ComponentDescriptor::DependencyArrayType& required)
