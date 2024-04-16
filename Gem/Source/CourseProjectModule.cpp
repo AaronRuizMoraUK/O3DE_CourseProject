@@ -4,6 +4,9 @@
 
 #include "CourseProjectSystemComponent.h"
 #include "MoverComponent.h"
+#include "CryptMoverComponent.h"
+#include "CryptGrabberComponent.h"
+#include "CryptTriggerComponent.h"
 
 #include <CourseProject/CourseProjectTypeIds.h>
 
@@ -22,6 +25,9 @@ namespace CourseProject
             // Push results of [MyComponent]::CreateDescriptor() into m_descriptors here.
             m_descriptors.insert(m_descriptors.end(), {
                 MoverComponent::CreateDescriptor(),
+                CryptMoverComponent::CreateDescriptor(),
+                CryptGrabberComponent::CreateDescriptor(),
+                CryptTriggerComponent::CreateDescriptor(),
 
                 CourseProjectSystemComponent::CreateDescriptor(),
             });

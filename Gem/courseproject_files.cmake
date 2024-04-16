@@ -3,8 +3,17 @@ set(FILES
     Include/CourseProject/CourseProjectBus.h
     Include/CourseProject/CourseProjectTypeIds.h
     Include/CourseProject/MoverInterface.h
+    Include/CourseProject/CryptMoverInterface.h
+    Include/CourseProject/CryptGrabberInterface.h
+    Include/CourseProject/CryptTriggerInterface.h
     Source/CourseProjectSystemComponent.cpp
     Source/CourseProjectSystemComponent.h
     Source/MoverComponent.cpp
     Source/MoverComponent.h
+    Source/CryptMoverComponent.cpp
+    Source/CryptMoverComponent.h
+    Source/CryptGrabberComponent.cpp
+    Source/CryptGrabberComponent.h
+    Source/CryptTriggerComponent.cpp
+    Source/CryptTriggerComponent.h
 )

@@ -2,19 +2,16 @@
 #pragma once
 
 #include <AzCore/Component/Component.h>
-#include <AzCore/Math/Vector3.h>
-#include <AzCore/Component/TickBus.h>
-#include <CourseProject/MoverInterface.h>
+#include <CourseProject/CryptTriggerInterface.h>
 
 namespace CourseProject
 {
-    class MoverComponent
+    class CryptTriggerComponent
         : public AZ::Component
-        , public MoverRequestBus::Handler
-        , public AZ::TickBus::Handler
+        , public CryptTriggerRequestBus::Handler
     {
     public:
-        AZ_COMPONENT_DECL(MoverComponent);
+        AZ_COMPONENT_DECL(CryptTriggerComponent);
 
         /*
         * Reflects component data into the reflection contexts, including the serialization, edit, and behavior contexts.
@@ -79,23 +76,5 @@ namespace CourseProject
         * Deactivate() implementation can handle this scenario.
         */
         void Deactivate() override;
-
-        // AZ::TickBus::Handler overrides ...
-        void OnTick(float deltaTime, AZ::ScriptTimePoint time) override;
-        int GetTickOrder() override;
-
-    private:
-        // Configuration of the component
-        AZ::Vector3 m_moveVelocity = AZ::Vector3::CreateZero();
-
-        float m_moveDistance = 100.0f;
-
-        AZ::Vector3 m_rotateVelocity = AZ::Vector3::CreateZero();
-
-    private:
-        AZ::Vector3 m_startLocation;
-
-        void MovePlatform(float deltaTime);
-        void RotatePlatform(float deltaTime);
     };
 } // namespace CourseProject
