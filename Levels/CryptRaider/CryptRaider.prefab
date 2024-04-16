@@ -280,10 +280,10 @@
                         "Configuration": {
                             "ModelAsset": {
                                 "assetId": {
-                                    "guid": "{EAB5688E-DA5D-55AF-BD4A-EC76C1136293}",
+                                    "guid": "{509B76DE-A46F-5D63-A61D-9FE7E776FFF2}",
                                     "subId": 283232331
                                 },
-                                "assetHint": "objects/hermanubis/hermanubis_low.fbx.azmodel"
+                                "assetHint": "assets/models/hermanubis_low.fbx.azmodel"
                             }
                         }
                     }
@@ -318,10 +318,10 @@
                         "PhysicsAsset": {
                             "Asset": {
                                 "assetId": {
-                                    "guid": "{EAB5688E-DA5D-55AF-BD4A-EC76C1136293}",
+                                    "guid": "{509B76DE-A46F-5D63-A61D-9FE7E776FFF2}",
                                     "subId": 2413788297
                                 },
-                                "assetHint": "objects/hermanubis/hermanubis_low.fbx.pxmesh"
+                                "assetHint": "assets/models/hermanubis_low.fbx.pxmesh"
                             },
                             "Configuration": {
                                 "Scale": [
@@ -331,11 +331,11 @@
                                 ],
                                 "PhysicsAsset": {
                                     "assetId": {
-                                        "guid": "{EAB5688E-DA5D-55AF-BD4A-EC76C1136293}",
+                                        "guid": "{509B76DE-A46F-5D63-A61D-9FE7E776FFF2}",
                                         "subId": 2413788297
                                     },
                                     "loadBehavior": "QueueLoad",
-                                    "assetHint": "objects/hermanubis/hermanubis_low.fbx.pxmesh"
+                                    "assetHint": "assets/models/hermanubis_low.fbx.pxmesh"
                                 }
                             }
                         }
@@ -930,10 +930,10 @@
                         "Configuration": {
                             "ModelAsset": {
                                 "assetId": {
-                                    "guid": "{ECB56B93-12F2-56FF-94AB-E14F61885ACB}",
+                                    "guid": "{CFAE16E2-3E3F-5258-A631-C613D83B55A3}",
                                     "subId": 270262656
                                 },
-                                "assetHint": "materialeditor/viewportmodels/caduceus.fbx.azmodel"
+                                "assetHint": "assets/models/caduceus.fbx.azmodel"
                             }
                         }
                     }
@@ -968,10 +968,10 @@
                         "PhysicsAsset": {
                             "Asset": {
                                 "assetId": {
-                                    "guid": "{ECB56B93-12F2-56FF-94AB-E14F61885ACB}",
+                                    "guid": "{CFAE16E2-3E3F-5258-A631-C613D83B55A3}",
                                     "subId": 1721248062
                                 },
-                                "assetHint": "materialeditor/viewportmodels/caduceus.fbx.pxmesh"
+                                "assetHint": "assets/models/caduceus.fbx.pxmesh"
                             },
                             "Configuration": {
                                 "Scale": [
@@ -981,11 +981,11 @@
                                 ],
                                 "PhysicsAsset": {
                                     "assetId": {
-                                        "guid": "{ECB56B93-12F2-56FF-94AB-E14F61885ACB}",
+                                        "guid": "{CFAE16E2-3E3F-5258-A631-C613D83B55A3}",
                                         "subId": 1721248062
                                     },
                                     "loadBehavior": "QueueLoad",
-                                    "assetHint": "materialeditor/viewportmodels/caduceus.fbx.pxmesh"
+                                    "assetHint": "assets/models/caduceus.fbx.pxmesh"
                                 }
                             }
                         }
