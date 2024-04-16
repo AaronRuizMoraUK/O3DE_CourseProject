@@ -17,6 +17,7 @@ namespace CourseProject
         AZ_COMPONENT_DECL(CryptMoverComponent);
         
         // CryptMoverRequestBus::Handler overrides ...
+        bool GetShouldMove() const override;
         void SetShouldMove(bool shouldMove) override;
 
         /*

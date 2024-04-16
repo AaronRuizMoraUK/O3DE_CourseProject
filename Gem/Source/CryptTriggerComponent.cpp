@@ -47,6 +47,7 @@ namespace CourseProject
 
             behaviorContext->EBus<CryptTriggerRequestBus>("CryptTriggerRequestBus")
                 ->Attribute(AZ::Script::Attributes::Category, "CourseProject Gem Group")
+                ->Event("GetCryptMover", &CryptTriggerRequests::GetCryptMover)
                 ->Event("SetCryptMover", &CryptTriggerRequests::SetCryptMover)
                 ;
         }
@@ -69,8 +70,14 @@ namespace CourseProject
     {
     }
 
+    AZ::EntityId CryptTriggerComponent::GetCryptMover() const
+    {
+        return m_cryptMoverEntityId;
+    }
+
     void CryptTriggerComponent::SetCryptMover(AZ::EntityId cryptMoverEntityId)
     {
+        m_cryptMoverEntityId = cryptMoverEntityId;
         m_cryptMover = CryptMoverRequestBus::FindFirstHandler(cryptMoverEntityId);
     }
 

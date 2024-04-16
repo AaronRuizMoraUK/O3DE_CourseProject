@@ -12,6 +12,7 @@ namespace CourseProject
         AZ_RTTI(CourseProject::CryptTriggerRequests, "{96E950E9-7C2A-4F96-9BA0-4F6B11622E15}");
 
         // Put your public request methods here.
+        virtual AZ::EntityId GetCryptMover() const = 0;
         virtual void SetCryptMover(AZ::EntityId cryptMoverEntityId) = 0;
         
         // Put notification events here. Examples:

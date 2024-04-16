@@ -12,6 +12,7 @@ namespace CourseProject
         AZ_RTTI(CourseProject::CryptMoverRequests, "{0FF72FC5-37B4-4B97-8C5B-8061E435F274}");
 
         // Put your public request methods here.
+        virtual bool GetShouldMove() const = 0;
         virtual void SetShouldMove(bool shouldMove) = 0;
         
         // Put notification events here. Examples:

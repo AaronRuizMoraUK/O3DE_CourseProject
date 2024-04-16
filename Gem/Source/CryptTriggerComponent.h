@@ -20,6 +20,7 @@ namespace CourseProject
         AZ_COMPONENT_DECL(CryptTriggerComponent);
 
         // CryptTriggerRequestBus::Handler overrides ...
+        AZ::EntityId GetCryptMover() const;
         void SetCryptMover(AZ::EntityId cryptMoverEntityId) override;
 
         /*
@@ -103,6 +104,7 @@ namespace CourseProject
         bool m_triggersOnce = true;
 
     private:
+        AZ::EntityId m_cryptMoverEntityId = AZ::EntityId(AZ::EntityId::InvalidEntityId);
         CryptMoverRequests* m_cryptMover = nullptr;
 
         AZ::EntityId m_acceptableEntityId = AZ::EntityId(AZ::EntityId::InvalidEntityId);

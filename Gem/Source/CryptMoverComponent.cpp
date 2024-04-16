@@ -44,6 +44,12 @@ namespace CourseProject
             behaviorContext->Class<CryptMoverComponent>("CryptMover Component Group")
                 ->Attribute(AZ::Script::Attributes::Category, "CourseProject Gem Group")
                 ;
+
+            behaviorContext->EBus<CryptMoverRequestBus>("CryptMoverRequestBus")
+                ->Attribute(AZ::Script::Attributes::Category, "CourseProject Gem Group")
+                ->Event("GetShouldMove", &CryptMoverRequests::GetShouldMove)
+                ->Event("SetShouldMove", &CryptMoverRequests::SetShouldMove)
+                ;
         }
     }
 
@@ -63,6 +69,11 @@ namespace CourseProject
 
     void CryptMoverComponent::GetDependentServices([[maybe_unused]] AZ::ComponentDescriptor::DependencyArrayType& dependent)
     {
+    }
+
+    bool CryptMoverComponent::GetShouldMove() const
+    {
+        return m_shouldMove;
     }
 
     void CryptMoverComponent::SetShouldMove(bool shouldMove)
