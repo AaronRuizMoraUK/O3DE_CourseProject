@@ -1,0 +1,7 @@
+[Bb]uild/
+[Cc]ache/
+[Uu]ser/
+[Uu]ser_test*/
+*.bak*
+_savebackup/
+CMakeUserPresets.json

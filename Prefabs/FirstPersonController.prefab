@@ -1,0 +1,230 @@
+{
+    "ContainerEntity": {
+        "Id": "ContainerEntity",
+        "Name": "FirstPersonController",
+        "Components": {
+            "EditorDisabledCompositionComponent": {
+                "$type": "EditorDisabledCompositionComponent",
+                "Id": 16902058297924637816
+            },
+            "EditorEntityIconComponent": {
+                "$type": "EditorEntityIconComponent",
+                "Id": 8259368861284566761
+            },
+            "EditorEntitySortComponent": {
+                "$type": "EditorEntitySortComponent",
+                "Id": 6421693662293094737,
+                "Child Entity Order": [
+                    "Entity_[9625824282606]"
+                ]
+            },
+            "EditorInspectorComponent": {
+                "$type": "EditorInspectorComponent",
+                "Id": 1039656155781733847
+            },
+            "EditorLockComponent": {
+                "$type": "EditorLockComponent",
+                "Id": 2760918855223527694
+            },
+            "EditorOnlyEntityComponent": {
+                "$type": "EditorOnlyEntityComponent",
+                "Id": 9489127183588728993
+            },
+            "EditorPendingCompositionComponent": {
+                "$type": "EditorPendingCompositionComponent",
+                "Id": 9455178357991543240
+            },
+            "EditorPrefabComponent": {
+                "$type": "EditorPrefabComponent",
+                "Id": 12518394373634269121
+            },
+            "EditorVisibilityComponent": {
+                "$type": "EditorVisibilityComponent",
+                "Id": 11130067691965702388
+            },
+            "TransformComponent": {
+                "$type": "{27F1E1A1-8D9D-4C3B-BD3A-AFB9762449C0} TransformComponent",
+                "Id": 17716384264703030820,
+                "Parent Entity": ""
+            }
+        }
+    },
+    "Entities": {
+        "Entity_[9617234348014]": {
+            "Id": "Entity_[9617234348014]",
+            "Name": "Camera",
+            "Components": {
+                "Component_[11895140916889160460]": {
+                    "$type": "EditorEntityIconComponent",
+                    "Id": 11895140916889160460
+                },
+                "Component_[16880285896855930892]": {
+                    "$type": "{CA11DA46-29FF-4083-B5F6-E02C3A8C3A3D} EditorCameraComponent",
+                    "Id": 16880285896855930892,
+                    "Controller": {
+                        "Configuration": {
+                            "Field of View": 55.0
+                        }
+                    }
+                },
+                "Component_[17187464423780271193]": {
+                    "$type": "EditorLockComponent",
+                    "Id": 17187464423780271193
+                },
+                "Component_[17495696818315413311]": {
+                    "$type": "EditorEntitySortComponent",
+                    "Id": 17495696818315413311
+                },
+                "Component_[18086214374043522055]": {
+                    "$type": "{27F1E1A1-8D9D-4C3B-BD3A-AFB9762449C0} TransformComponent",
+                    "Id": 18086214374043522055,
+                    "Parent Entity": "Entity_[9625824282606]",
+                    "Transform Data": {
+                        "Translate": [
+                            0.0,
+                            0.0,
+                            1.3966143131256104
+                        ]
+                    }
+                },
+                "Component_[2654521436129313160]": {
+                    "$type": "EditorVisibilityComponent",
+                    "Id": 2654521436129313160
+                },
+                "Component_[5265045084611556958]": {
+                    "$type": "EditorDisabledCompositionComponent",
+                    "Id": 5265045084611556958
+                },
+                "Component_[7169798125182238623]": {
+                    "$type": "EditorPendingCompositionComponent",
+                    "Id": 7169798125182238623
+                },
+                "Component_[8866210352157164042]": {
+                    "$type": "EditorInspectorComponent",
+                    "Id": 8866210352157164042
+                },
+                "Component_[9129253381063760879]": {
+                    "$type": "EditorOnlyEntityComponent",
+                    "Id": 9129253381063760879
+                }
+            }
+        },
+        "Entity_[9625824282606]": {
+            "Id": "Entity_[9625824282606]",
+            "Name": "FirstPersonController",
+            "Components": {
+                "EditorCharacterControllerComponent": {
+                    "$type": "EditorCharacterControllerComponent",
+                    "Id": 15240115005741737948,
+                    "Configuration": {
+                        "entityId": "",
+                        "CollisionLayer": {
+                            "Index": 2
+                        },
+                        "MaterialSlots": {
+                            "Slots": [
+                                {
+                                    "Name": "Entire object"
+                                }
+                            ]
+                        },
+                        "ContactOffset": 0.009999999776482582
+                    },
+                    "ShapeConfig": {
+                        "Capsule": {
+                            "Height": 1.7999999523162842,
+                            "Radius": 0.30000001192092896
+                        }
+                    }
+                },
+                "EditorDisabledCompositionComponent": {
+                    "$type": "EditorDisabledCompositionComponent",
+                    "Id": 5457775041219382705
+                },
+                "EditorEntityIconComponent": {
+                    "$type": "EditorEntityIconComponent",
+                    "Id": 1232786308729779008
+                },
+                "EditorEntitySortComponent": {
+                    "$type": "EditorEntitySortComponent",
+                    "Id": 7410097974495508712,
+                    "Child Entity Order": [
+                        "Entity_[9617234348014]"
+                    ]
+                },
+                "EditorInspectorComponent": {
+                    "$type": "EditorInspectorComponent",
+                    "Id": 7433956023215485664,
+                    "ComponentOrderEntryArray": [
+                        {
+                            "ComponentId": 7322830721977570099
+                        },
+                        {
+                            "ComponentId": 2378799766652969498,
+                            "SortIndex": 1
+                        },
+                        {
+                            "ComponentId": 15240115005741737948,
+                            "SortIndex": 2
+                        },
+                        {
+                            "ComponentId": 12909023594531598328,
+                            "SortIndex": 3
+                        }
+                    ]
+                },
+                "EditorLockComponent": {
+                    "$type": "EditorLockComponent",
+                    "Id": 16657151458703395837
+                },
+                "EditorOnlyEntityComponent": {
+                    "$type": "EditorOnlyEntityComponent",
+                    "Id": 13435340841353164354
+                },
+                "EditorPendingCompositionComponent": {
+                    "$type": "EditorPendingCompositionComponent",
+                    "Id": 2148401628754491570
+                },
+                "EditorVisibilityComponent": {
+                    "$type": "EditorVisibilityComponent",
+                    "Id": 10922904829317893308
+                },
+                "FirstPersonControllerComponent": {
+                    "$type": "GenericComponentWrapper",
+                    "Id": 12909023594531598328,
+                    "m_template": {
+                        "$type": "FirstPersonControllerComponent",
+                        "Top Walking Speed": 6.0,
+                        "Grounded Collision Group": {
+                            "GroupId": "{BC6C8F12-22F5-42C8-B5F1-F092C4226909}"
+                        },
+                        "Jump Head Hit Collision Group": {
+                            "GroupId": "{A5CD9303-C3E5-4625-84F3-0CE1A0591880}"
+                        },
+                        "Jump Falling Gravity Factor": 1.100000023841858,
+                        "Grounded Offset": 0.20000000298023224,
+                        "Jump Hold Distance": 2.0
+                    }
+                },
+                "InputConfigurationComponent": {
+                    "$type": "GenericComponentWrapper",
+                    "Id": 2378799766652969498,
+                    "m_template": {
+                        "$type": "InputConfigurationComponent",
+                        "Input Event Bindings": {
+                            "assetId": {
+                                "guid": "{5EC3FBED-B1C5-531B-B7EE-F50ABE789B2D}"
+                            },
+                            "assetHint": "assets/firstpersoninputs.inputbindings"
+                        }
+                    }
+                },
+                "TransformComponent": {
+                    "$type": "{27F1E1A1-8D9D-4C3B-BD3A-AFB9762449C0} TransformComponent",
+                    "Id": 7322830721977570099,
+                    "Parent Entity": "ContainerEntity"
+                }
+            }
+        }
+    }
+}

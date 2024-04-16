@@ -1,0 +1,60 @@
+{
+    "project_name": "CourseProject",
+    "version": "1.0.0",
+    "project_id": "{90261C05-A772-43BA-AB61-E91E66008AD8}",
+    "origin": "The primary repo for CourseProject goes here: i.e. http://www.mydomain.com",
+    "license": "What license CourseProject uses goes here: i.e. https://opensource.org/licenses/Apache-2.0 Or https://opensource.org/licenses/MIT etc.",
+    "display_name": "CourseProject",
+    "summary": "A short description of CourseProject.",
+    "canonical_tags": [
+        "Project"
+    ],
+    "user_tags": [
+        "CourseProject"
+    ],
+    "icon_path": "preview.png",
+    "engine": "o3de",
+    "external_subdirectories": [
+        "Gem"
+    ],
+    "restricted": "CourseProject",
+    "gem_names": [
+        "Atom",
+        "AtomContent",
+        "AudioSystem",
+        "Camera",
+        "CameraFramework",
+        "CourseProject",
+        "DebugDraw",
+        "DevTextures",
+        "DiffuseProbeGrid",
+        "EMotionFX",
+        "EditorPythonBindings",
+        "FirstPersonController==1.0.0",
+        "GameState",
+        "ImGui",
+        "LandscapeCanvas",
+        "LyShine",
+        "MiniAudio",
+        "NvCloth",
+        "PhysXDebug",
+        "PrefabBuilder",
+        "PrimitiveAssets",
+        "Profiler",
+        "RemoteTools",
+        "SaveData",
+        "SceneProcessing",
+        "ScriptCanvasPhysics",
+        "ScriptEvents",
+        "StartingPointCamera",
+        "StartingPointInput",
+        "StartingPointMovement",
+        "Terrain",
+        "TextureAtlas",
+        "Vegetation",
+        "VideoPlaybackFramework",
+        "WarehouseAssets==1.0.0",
+        "WhiteBox"
+    ],
+    "engine_version": "4.2.0"
+}
