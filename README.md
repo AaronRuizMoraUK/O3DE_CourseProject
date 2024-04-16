@@ -3,13 +3,11 @@ O3DE project recreating the same levels generated from the Unreal Engine 5 cours
 
 ## O3DE Engine Version
 
-Version: Source code post `23.10.2` release.
-
 The O3DE `development` branch was used during the creation of this project.
 
-Github: https://github.com/o3de/o3de
-Branch: [development](https://github.com/o3de/o3de/commits/development)
-Commit: [d265b3a10c](https://github.com/o3de/o3de/commit/d265b3a10c5da659091a7567cf34d4d7540209c0)
+**Version**: Source code post `23.10.2` release.
+**Branch**: [development](https://github.com/o3de/o3de/commits/development)\
+**Commit**: [d265b3a10c](https://github.com/o3de/o3de/commit/d265b3a10c5da659091a7567cf34d4d7540209c0)\
 
 The following PRs are also necessary:
 
