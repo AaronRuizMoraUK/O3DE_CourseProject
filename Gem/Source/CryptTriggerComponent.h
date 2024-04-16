@@ -19,10 +19,6 @@ namespace CourseProject
     public:
         AZ_COMPONENT_DECL(CryptTriggerComponent);
 
-        // CryptTriggerRequestBus::Handler overrides ...
-        AZ::EntityId GetCryptMover() const;
-        void SetCryptMover(AZ::EntityId cryptMoverEntityId) override;
-
         /*
         * Reflects component data into the reflection contexts, including the serialization, edit, and behavior contexts.
         */
@@ -62,6 +58,10 @@ namespace CourseProject
         * does not return an error and still activates this component.
         */
         static void GetDependentServices(AZ::ComponentDescriptor::DependencyArrayType& dependent);
+
+        // CryptTriggerRequestBus::Handler overrides ...
+        AZ::EntityId GetCryptMover() const;
+        void SetCryptMover(AZ::EntityId cryptMoverEntityId) override;
 
     protected:
         void Init() override;
