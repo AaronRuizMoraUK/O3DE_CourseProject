@@ -1048,6 +1048,11 @@
                             "GroupId": "{778E7615-9688-483D-B3A1-0F1355A6BEAC}"
                         },
                         "Trigger": true,
+                        "Position": [
+                            0.0,
+                            0.0,
+                            -0.05000000074505806
+                        ],
                         "MaterialSlots": {
                             "Slots": [
                                 {

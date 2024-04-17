@@ -119,6 +119,8 @@ namespace CourseProject
         CryptTriggerRequestBus::Handler::BusDisconnect(GetEntityId());
 
         Physics::RigidBodyNotificationBus::Handler::BusDisconnect();
+
+        m_overlappingEntityIds.clear();
     }
 
     void CryptTriggerComponent::OnPhysicsEnabled(const AZ::EntityId& entityId)
@@ -151,8 +153,18 @@ namespace CourseProject
             return;
         }
 
+        /*
+        AZLOG_INFO("Overlapping: %d", m_overlappingEntityIds.size())
+        for (const auto& entityId : m_overlappingEntityIds)
+        {
+            AZLOG_INFO("- %s", entityId.ToString().c_str());
+        }
+        */
+
+        AZ::EntityId acceptableEntityId = GetAcceptableEntity();
+
         // While there is an acceptable entity in the trigger, move the mover.
-        if (m_acceptableEntityId.IsValid())
+        if (acceptableEntityId.IsValid())
         {
             if (m_triggersOnce)
             {
@@ -160,10 +172,10 @@ namespace CourseProject
                 Deactivate();
 
                 // Disable acceptable entity's physics and collisions
-                Physics::RigidBodyRequestBus::Event(m_acceptableEntityId, &Physics::RigidBodyRequests::DisablePhysics);
+                Physics::RigidBodyRequestBus::Event(acceptableEntityId, &Physics::RigidBodyRequests::DisablePhysics);
 
                 // Attach the acceptable entity to the mover so it moves with it.
-                AZ::TransformBus::Event(m_acceptableEntityId, &AZ::TransformInterface::SetParent, m_cryptMoverEntityId);
+                AZ::TransformBus::Event(acceptableEntityId, &AZ::TransformInterface::SetParent, m_cryptMoverEntityId);
             }
 
             // Start moving the mover.
@@ -183,25 +195,15 @@ namespace CourseProject
             return;
         }
 
-        // Ignore self
         AZ::EntityId entityId = triggerEvent.m_otherBody->GetEntityId();
+
+        // Ignore self
         if (entityId == GetEntityId())
         {
             return;
         }
 
-        bool hasAcceptableTag = false;
-        LmbrCentral::TagComponentRequestBus::EventResult(hasAcceptableTag, entityId, 
-            &LmbrCentral::TagComponentRequests::HasTag, LmbrCentral::Tag(m_acceptableEntityTag));
-
-        bool hasGrabbedTag = false;
-        LmbrCentral::TagComponentRequestBus::EventResult(hasGrabbedTag, entityId, 
-            &LmbrCentral::TagComponentRequests::HasTag, GrabbedTag);
-
-        if (hasAcceptableTag && !hasGrabbedTag)
-        {
-            m_acceptableEntityId = entityId;
-        }
+        m_overlappingEntityIds.insert(entityId);
     }
 
     void CryptTriggerComponent::OnTriggerExit(const AzPhysics::TriggerEvent& triggerEvent)
@@ -211,9 +213,29 @@ namespace CourseProject
             return;
         }
 
-        if (triggerEvent.m_otherBody->GetEntityId() == m_acceptableEntityId)
+        AZ::EntityId entityId = triggerEvent.m_otherBody->GetEntityId();
+
+        m_overlappingEntityIds.erase(entityId);
+    }
+
+    AZ::EntityId CryptTriggerComponent::GetAcceptableEntity() const
+    {
+        for (const auto& entityId : m_overlappingEntityIds)
         {
-            m_acceptableEntityId.SetInvalid();
+            bool hasAcceptableTag = false;
+            LmbrCentral::TagComponentRequestBus::EventResult(hasAcceptableTag, entityId,
+                &LmbrCentral::TagComponentRequests::HasTag, LmbrCentral::Tag(m_acceptableEntityTag));
+
+            bool hasGrabbedTag = false;
+            LmbrCentral::TagComponentRequestBus::EventResult(hasGrabbedTag, entityId,
+                &LmbrCentral::TagComponentRequests::HasTag, GrabbedTag);
+
+            if (hasAcceptableTag && !hasGrabbedTag)
+            {
+                return entityId;
+            }
         }
+
+        return AZ::EntityId();
     }
 } // namespace CourseProject

@@ -3,6 +3,7 @@
 
 #include <AzCore/Component/Component.h>
 #include <AzCore/Component/TickBus.h>
+#include <AzCore/std/containers/set.h>
 #include <AzFramework/Physics/Collision/CollisionEvents.h>
 #include <AzFramework/Physics/Common/PhysicsSimulatedBodyEvents.h>
 #include <AzFramework/Physics/RigidBodyBus.h>
@@ -106,12 +107,14 @@ namespace CourseProject
         AZ::EntityId m_cryptMoverEntityId;
         CryptMoverRequests* m_cryptMover = nullptr;
 
-        AZ::EntityId m_acceptableEntityId;
+        AZStd::set<AZ::EntityId> m_overlappingEntityIds;
 
         AzPhysics::SimulatedBodyEvents::OnTriggerEnter::Handler m_onTriggerEnterHandler;
         AzPhysics::SimulatedBodyEvents::OnTriggerExit::Handler m_onTriggerExitHandler;
 
         void OnTriggerEnter(const AzPhysics::TriggerEvent& triggerEvent);
         void OnTriggerExit(const AzPhysics::TriggerEvent& triggerEvent);
+
+        AZ::EntityId GetAcceptableEntity() const;
     };
 } // namespace CourseProject
