@@ -21,5 +21,13 @@ This project requires the additional gems:
 ## Levels
 
 - **Warehouse Wreckage**: Level shooting barrels down. Section 2 of Unreal Engine 5 course ([link](https://www.udemy.com/course/unrealcourse/learn/lecture/31757886#overview))
+
+<img src="./O3DE_WarehouseWreckage.gif">
+
 - **Obstacle Assault**: Third person platforming level. Section 3 of Unreal Engine 5 course ([link](https://www.udemy.com/course/unrealcourse/learn/lecture/31759888#overview))
+
+<img src="./O3DE_ObstacleAssault.gif">
+
 - **Crypt Raider**: First person game where objects can be grabbed and released to open secret passages. Section 4 of Unreal Engine 5 course ([link](https://www.udemy.com/course/unrealcourse/learn/lecture/31760146#overview))
+
+<img src="./O3DE_CryptRaider.gif">
