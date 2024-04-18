@@ -1,4 +1,7 @@
 # O3DE_CourseProject
+
+<img src="./O3DE-logo.svg">
+
 O3DE project recreating the same levels generated from the Unreal Engine 5 course.
 
 ## O3DE Engine Version
