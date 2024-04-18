@@ -2,7 +2,7 @@
 
 <img src="./O3DE-logo.jpg">
 
-O3DE project recreating the same levels generated from the Unreal Engine 5 course.
+O3DE project recreating the same levels generated from the GameDev.tv [Unreal Engine 5 course](https://www.udemy.com/course/unrealcourse).
 
 ## O3DE Engine Version
 
