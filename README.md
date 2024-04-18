@@ -10,11 +10,7 @@ The O3DE `development` branch was used during the creation of this project.
 
 **Version**: Source code post `23.10.2` release.\
 **Branch**: [development](https://github.com/o3de/o3de/commits/development)\
-**Commit**: [d265b3a10c](https://github.com/o3de/o3de/commit/d265b3a10c5da659091a7567cf34d4d7540209c0)
-
-The following PRs are also necessary:
-
-- Fix Physics Material Assets in PhysXCommon to be processed in the AssetProcessor ([#17710](https://github.com/o3de/o3de/pull/17710))
+**Commit**: [c895a33742](https://github.com/o3de/o3de/commit/c895a337424e16c207ffd3033e6cf1d66893f06c)
 
 ## Gems
 
