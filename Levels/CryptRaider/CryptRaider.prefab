@@ -1233,6 +1233,11 @@
                     },
                     "HasNonUniformScale": true
                 },
+                "EditorCommentComponent": {
+                    "$type": "EditorCommentComponent",
+                    "Id": 9287031418968545539,
+                    "Configuration": "For this wall's collider to move correctly following its parent entity, at the moment it needs to be an \"static rigid  body\". This is because dynamic kinematic rigid bodies do not listen to \"OnTransformChanged\" events from the hierarchy.\n\nStatic Rigid Bodies will be able to move, but it can be more costly and cause unexpected issues.\n\nIn the future it'd be better to modify the Dynamic Rigid Body Component activation code and if it's kinematic then keep the entity part of the hierarchy."
+                },
                 "EditorDisabledCompositionComponent": {
                     "$type": "EditorDisabledCompositionComponent",
                     "Id": 6780979579118198234
