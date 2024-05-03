@@ -13,7 +13,8 @@ namespace CourseProject
     public:
         AZ_RTTI(CourseProjectRequests, CourseProjectRequestsTypeId);
         virtual ~CourseProjectRequests() = default;
-        // Put your public methods here
+        // Put your public methods here:
+        // Put your public methods here:
     };
 
     class CourseProjectBusTraits
